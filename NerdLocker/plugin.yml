@@ -1,0 +1,7 @@
+name: NerdLocker
+main: me.hammale.lock.lock
+version: 1.0
+commands:
+  nerd:
+    description:
+    usage: |
