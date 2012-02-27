@@ -1,20 +1,22 @@
-package me.hammale.lock;
+package me.hammale.nerd;
 
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerListener;
 import org.bukkit.inventory.ItemStack;
 
-public class lockPlayer extends PlayerListener {
+public class lockPlayer implements Listener {
 
 	public static lock plugin;
     public lockPlayer(lock instance) {
     	plugin = instance;
     }
-	
+    
+    @EventHandler
 	public void onPlayerInteract(PlayerInteractEvent e){
 		
 		ItemStack stack = e.getItem();

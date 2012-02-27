@@ -1,4 +1,4 @@
-package me.hammale.lock;
+package me.hammale.nerd;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -20,7 +20,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -38,9 +37,6 @@ public class lock extends JavaPlugin {
 	
 	public HashSet<String> strike = new HashSet<String>();
 	
-	private final lockPlayer plistener = new lockPlayer(this);
-	private final lockBlock blistener = new lockBlock(this);
-	
 	@Override
 	public void onDisable() {
 		PluginDescriptionFile pdfFile = this.getDescription();
@@ -54,9 +50,8 @@ public class lock extends JavaPlugin {
 		
 	    loadConfiguration();
 	    PluginManager pm = getServer().getPluginManager();
-	    pm.registerEvent(Event.Type.PLAYER_INTERACT, this.plistener, Event.Priority.Normal, this);
-	    pm.registerEvent(Event.Type.BLOCK_PLACE, this.blistener, Event.Priority.Normal, this);
-	    pm.registerEvent(Event.Type.BLOCK_BREAK, this.blistener, Event.Priority.Normal, this);
+		getServer().getPluginManager().registerEvents(new lockPlayer(this), this);
+		getServer().getPluginManager().registerEvents(new lockBlock(this), this);
 	}
 	
 	public void startStrike(final Player p) {
