@@ -21,7 +21,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class lock extends JavaPlugin {
@@ -49,9 +48,9 @@ public class lock extends JavaPlugin {
 		log.info("[NerdLocker] " + pdfFile.getVersion() + " Enabled!");
 		
 	    loadConfiguration();
-	    PluginManager pm = getServer().getPluginManager();
 		getServer().getPluginManager().registerEvents(new lockPlayer(this), this);
 		getServer().getPluginManager().registerEvents(new lockBlock(this), this);
+		getServer().getPluginManager().registerEvents(new lockEntity(this), this);
 	}
 	
 	public void startStrike(final Player p) {
